@@ -105,123 +105,190 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+In the Products table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
-```sql
--- Paste your SQL code below for Question 1
+## PROGRAM:
+
+```PY
+ProductID Name Category Price Stock
+
+106 Fitness Tracker Wearables 107 Laptop Electronics 999.99 50 108 Wireless Earbuds Accessories 100
+
+insert into Products(ProductID,Name,Category,Price,Stock)
+values(106,"Fitness Tracker","Wearables",NULL,NULL);
+insert into Products(ProductID,Name,Category,Price,Stock) 
+values(107,"Laptop","Electronic",999.99,50);
+insert into Products(ProductID,Name,Category,Price,Stock) 
+values(108,"Wireless Earbud","Accessorie",NULL,100); 
 ```
 
-**Output:**
 
-![Output1](output.png)
+## **Output:**
+
+<img width="1174" height="266" alt="image" src="https://github.com/user-attachments/assets/375fc8cd-9713-4095-9438-74ee8ac22dd9" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL Query to add attribute ISBN as varchar(30) and domain_dept as varchar(30) in the table 'books'
 
-```sql
--- Paste your SQL code below for Question 2
+## PROGRAM:
+```PY
+alter table books add  ISBN varchar(30);
+alter table books add domain_dept  varchar(30);
 ```
 
-**Output:**
+## **Output:**
 
-![Output2](output.png)
+<img width="1178" height="378" alt="image" src="https://github.com/user-attachments/assets/7e5af9da-c55f-4735-97c6-c83b2d947083" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Insert a customer with CustomerID 301, Name Michael Jordan, Address 123 Maple St, City Chicago, and ZipCode 60616 into the Customers table.
 
-```sql
--- Paste your SQL code below for Question 3
+
+## PROGRAM:
+```PY
+insert into Customers(CustomerID,Name,Address,City,ZipCode)
+values(301,"Michael Jordan","123 Maple St","Chicago",60616);
 ```
+## **Output:**
 
-**Output:**
+<img width="1184" height="229" alt="image" src="https://github.com/user-attachments/assets/593a7c7c-2596-44b9-9ccb-bd58115e7b83" />
 
-![Output3](output.png)
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a new table named contacts with the following specifications: contact_id as INTEGER and primary key. first_name as TEXT and not NULL. last_name as TEXT and not NULL. email as TEXT. phone as TEXT and not NULL with a check constraint to ensure the length of phone is at least 10 characters.
+## PROGRAM:
 
-```sql
--- Paste your SQL code below for Question 4
+```PY
+create table contacts(
+contact_id  INTEGER  primary key,
+first_name  TEXT not NULL,
+last_name  TEXT  not NULL,
+email  TEXT,
+phone  TEXT  not NULL  check(LENGTH(phone)>=10) 
+);
 ```
+## **Output:**
 
-**Output:**
+<img width="1192" height="323" alt="image" src="https://github.com/user-attachments/assets/b1a3c63c-136d-490a-9923-f85494c0e5dc" />
 
-![Output4](output.png)
 
 **Question 5**
 ---
--- Paste Question 5 here
+Create a table named Invoices with the following constraints:
 
-```sql
--- Paste your SQL code below for Question 5
+InvoiceID as INTEGER should be the primary key. InvoiceDate as DATE. DueDate as DATE should be greater than the InvoiceDate. Amount as REAL should be greater than 0.
+## PROGRAM:
+```PY
+create table Invoices(
+InvoiceID INTEGER  primary key,
+InvoiceDate  DATE,
+DueDate  DATE check(DueDate>InvoiceDate),
+Amount  REAL check(Amount > 0) 
+);
 ```
 
-**Output:**
+## **Output:**
 
-![Output5](output.png)
+<img width="1176" height="265" alt="image" src="https://github.com/user-attachments/assets/b97a6c1e-c785-47fe-b901-8cffe20c3fd8" />
+
 
 **Question 6**
----
--- Paste Question 6 here
+Create a new table named item with the following specifications and constraints: item_id as TEXT and as primary key. item_desc as TEXT. rate as INTEGER. icom_id as TEXT with a length of 4. icom_id is a foreign key referencing com_id in the company table. The foreign key should set NULL on updates and deletes. item_desc and rate should not accept NULL.
 
-```sql
--- Paste your SQL code below for Question 6
+## PROGRAM:
+```PY
+create table item(
+item_id  TEXT  primary key,
+item_desc  TEXT not null,
+rate  INTEGER not null,
+icom_id TEXT(4),
+foreign key(icom_id) references company(com_id) on update set null on delete set null
+);
 ```
+## **Output:**
 
-**Output:**
+<img width="1179" height="343" alt="image" src="https://github.com/user-attachments/assets/af01e3e8-cf25-4c6e-a645-5d33a4fdf486" />
 
-![Output6](output.png)
 
 **Question 7**
 ---
--- Paste Question 7 here
+Insert all products from Discontinued_products into Products.
 
-```sql
--- Paste your SQL code below for Question 7
+Table attributes are ProductID, ProductName, Price, Stock
+
+## PROGRAM:
+
+```PY
+
+insert into Products(ProductID, ProductName, Price, Stock)
+select * from Discontinued_products;
+
 ```
 
-**Output:**
+## **Output:**
 
-![Output7](output.png)
+<img width="1186" height="286" alt="image" src="https://github.com/user-attachments/assets/6f961221-00e7-45ee-b49c-747a062adccb" />
 
 **Question 8**
 ---
--- Paste Question 8 here
+Create a table named Events with the following columns:
 
-```sql
--- Paste your SQL code below for Question 8
+EventID as INTEGER EventName as TEXT EventDate as DATE
+## PROGRAM:
+```PY
+create table Events(
+EventID  INTEGER,
+EventName  TEXT,
+EventDate  DATE 
+);
 ```
 
-**Output:**
+## **Output:**
 
-![Output8](output.png)
+<img width="1189" height="376" alt="image" src="https://github.com/user-attachments/assets/53e55ad0-db5b-458a-995d-59d110facdc8" />
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write a SQL query to modify the Student_details table by adding a new column Email of type VARCHAR(50) and updating the column MARKS to have a default value of 0.
 
-```sql
--- Paste your SQL code below for Question 9
+
+## PROGRAM:
+```PY
+alter table Student_details  add Email VARCHAR(50);
+alter table Student_details  add MARKS default 0;
 ```
 
-**Output:**
+## **Output:**
 
-![Output9](output.png)
+<img width="1187" height="233" alt="image" src="https://github.com/user-attachments/assets/23cc9d71-fe32-47e9-944b-6af5749d7689" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Create a table named Employees with the following constraints:
 
-```sql
--- Paste your SQL code below for Question 10
+EmployeeID should be the primary key. FirstName and LastName should be NOT NULL. Email should be unique. Salary should be greater than 0. DepartmentID should be a foreign key referencing the Departments table.
+
+## PROGRAM:
+
+```PY
+create table Employees(
+EmployeeID  primary key,
+FirstName varchar(225)NOT NULL,
+LastName varchar(225) NOT NULL,
+Email  UNIQUE,
+Salary check(salary>0),
+DepartmentID INTEGER,
+foreign key(DepartmentID) references  Departments(DepartmentID)
 ```
+## **Output:**
 
-**Output:**
-
-![Output10](output.png)
+<img width="1177" height="421" alt="image" src="https://github.com/user-attachments/assets/35b69fa7-3489-4ab5-81e1-baa0e99a305e" />
 
 
 ## RESULT
